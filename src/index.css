@@ -1,0 +1,450 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;500;600;700;800&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Noto Serif Bengali", serif;
+  background: #faf9f6;
+  color: #222;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.site {
+  min-height: 100vh;
+}
+
+/* Header */
+
+.header {
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+}
+
+.topbar {
+  max-width: 1250px;
+  margin: auto;
+  padding: 8px 20px;
+  display: flex;
+  justify-content: space-between;
+  color: #777;
+  font-size: 13px;
+}
+
+.brand {
+  max-width: 1250px;
+  margin: auto;
+  min-height: 125px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.brand h1 {
+  margin: 0;
+  font-size: 48px;
+  font-weight: 800;
+  letter-spacing: -2px;
+}
+
+.brand p {
+  margin: 4px 0 0;
+  color: #777;
+  font-size: 15px;
+}
+
+.menu-button,
+.search-button {
+  border: none;
+  background: transparent;
+  font-size: 25px;
+  padding: 10px;
+}
+
+.nav {
+  max-width: 1250px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  border-top: 1px solid #eee;
+}
+
+.nav a {
+  padding: 13px 15px;
+  font-size: 14px;
+  border-bottom: 2px solid transparent;
+}
+
+.nav a:hover {
+  border-bottom-color: #222;
+}
+
+.notice {
+  max-width: 1250px;
+  margin: 20px auto;
+  padding: 10px 15px;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  gap: 20px;
+  font-size: 14px;
+}
+
+/* Hero */
+
+.hero {
+  max-width: 1250px;
+  margin: 30px auto;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  min-height: 400px;
+  background: #eeeae2;
+}
+
+.hero-content {
+  padding: 55px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.tag,
+.article-body .category,
+.text-card span,
+.novel-card span,
+.interview span {
+  font-size: 13px;
+  font-weight: 700;
+  color: #8a241c;
+}
+
+.hero h2 {
+  font-size: 45px;
+  line-height: 1.25;
+  margin: 15px 0;
+}
+
+.hero p {
+  font-size: 18px;
+  line-height: 2;
+  color: #555;
+}
+
+.hero-image {
+  min-height: 400px;
+  background: #d8d0c3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-placeholder {
+  font-size: 30px;
+  font-weight: 700;
+  color: #777;
+}
+
+.read-button,
+.novel-card button,
+.interview button {
+  align-self: flex-start;
+  background: #222;
+  color: white;
+  border: none;
+  padding: 11px 20px;
+  margin-top: 10px;
+}
+
+/* Sections */
+
+.section {
+  max-width: 1250px;
+  margin: 55px auto;
+  padding: 0 10px;
+}
+
+.section-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #222;
+  margin-bottom: 25px;
+}
+
+.section-title h2 {
+  font-size: 27px;
+  margin: 0 0 8px;
+}
+
+.section-title a {
+  font-size: 14px;
+}
+
+/* Articles */
+
+.article-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.article {
+  background: white;
+  border: 1px solid #ddd;
+}
+
+.article-image {
+  height: 150px;
+  background: #ddd8cf;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #777;
+  font-size: 15px;
+}
+
+.article-body {
+  padding: 18px;
+}
+
+.article h3 {
+  font-size: 21px;
+  line-height: 1.5;
+  margin: 8px 0;
+}
+
+.article p {
+  color: #666;
+  line-height: 1.8;
+  font-size: 14px;
+}
+
+.article small {
+  color: #777;
+}
+
+/* Simple cards */
+
+.simple-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.text-card {
+  background: white;
+  padding: 25px;
+  border-top: 3px solid #222;
+}
+
+.text-card h3 {
+  font-size: 22px;
+  margin: 10px 0;
+}
+
+.text-card p {
+  color: #666;
+  line-height: 1.8;
+}
+
+/* Novel */
+
+.novel-card {
+  padding: 45px;
+  background: #eeeae2;
+}
+
+.novel-card h3 {
+  font-size: 35px;
+  margin: 10px 0;
+}
+
+.novel-card p {
+  max-width: 750px;
+  color: #555;
+  line-height: 2;
+}
+
+/* Knowledge */
+
+.knowledge-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.knowledge-card {
+  background: white;
+  padding: 22px;
+  border: 1px solid #ddd;
+}
+
+.knowledge-card h3 {
+  margin-top: 0;
+}
+
+.knowledge-card p {
+  color: #666;
+}
+
+.knowledge-card a {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* Interview */
+
+.interview {
+  max-width: 1250px;
+  margin: 60px auto;
+  padding: 50px;
+  background: #222;
+  color: white;
+}
+
+.interview p {
+  color: #ccc;
+}
+
+.interview button {
+  background: white;
+  color: #222;
+}
+
+/* Footer */
+
+footer {
+  background: #171717;
+  color: white;
+  padding: 50px 20px;
+  text-align: center;
+}
+
+footer h2 {
+  font-size: 30px;
+  margin: 0;
+}
+
+footer p {
+  color: #aaa;
+}
+
+.footer-links {
+  max-width: 1000px;
+  margin: 30px auto;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.footer-links a {
+  color: #ccc;
+  font-size: 13px;
+}
+
+.copyright {
+  border-top: 1px solid #444;
+  padding-top: 20px;
+  color: #777;
+  font-size: 13px;
+}
+
+/* Mobile */
+
+@media (max-width: 800px) {
+
+  .topbar {
+    font-size: 11px;
+  }
+
+  .brand {
+    min-height: 95px;
+    padding: 0 10px;
+  }
+
+  .brand h1 {
+    font-size: 32px;
+  }
+
+  .brand p {
+    font-size: 11px;
+  }
+
+  .nav {
+    display: none;
+    flex-direction: column;
+  }
+
+  .nav.open {
+    display: flex;
+  }
+
+  .nav a {
+    text-align: center;
+    border-bottom: 1px solid #eee;
+  }
+
+  .notice {
+    margin: 15px 10px;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .hero {
+    margin: 15px 10px;
+    grid-template-columns: 1fr;
+  }
+
+  .hero-content {
+    padding: 30px;
+  }
+
+  .hero h2 {
+    font-size: 32px;
+  }
+
+  .hero-image {
+    min-height: 220px;
+  }
+
+  .section {
+    margin: 40px 10px;
+  }
+
+  .article-grid,
+  .simple-grid,
+  .knowledge-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-title h2 {
+    font-size: 22px;
+  }
+
+  .novel-card {
+    padding: 30px;
+  }
+
+  .interview {
+    margin: 40px 10px;
+    padding: 30px;
+  }
+}
