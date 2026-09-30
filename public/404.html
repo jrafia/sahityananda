@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <title>সাহিত্যানন্দ</title>
   <script>
+    const path = location.pathname.replace(/^\/sahityananda/, "");
+
     sessionStorage.setItem(
       "redirect",
-      location.pathname +
-      location.search +
-      location.hash
+      path + location.search + location.hash
     );
 
     location.replace("/sahityananda/");
