@@ -1720,16 +1720,89 @@ footer p {
 /* =====================================================
    FORGOT PASSWORD
    ===================================================== */
+/* =====================================================
+   USER LOGIN - FINAL FIX
+   ===================================================== */
+
+.user-login-page {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: #f5f1e8;
+}
+
+.user-login-box {
+  width: 100%;
+  max-width: 420px;
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 18px;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.12);
+}
+
+/* LOGIN FORM */
+
+.user-login-box form {
+  display: block !important;
+  width: 100% !important;
+}
+
+/* LOGIN BUTTON */
+
+.user-login-box .login-submit-button {
+  display: flex !important;
+  width: 100% !important;
+  height: 48px !important;
+
+  align-items: center !important;
+  justify-content: center !important;
+
+  margin: 18px 0 12px !important;
+  padding: 12px 20px !important;
+
+  background: #8b5e3c !important;
+  color: #ffffff !important;
+
+  border: 0 !important;
+  border-radius: 9px !important;
+
+  font-family: inherit !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+
+  text-align: center !important;
+
+  cursor: pointer !important;
+
+  visibility: visible !important;
+  opacity: 1 !important;
+
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+.user-login-box .login-submit-button:hover {
+  background: #6f472d !important;
+}
+
+.user-login-box .login-submit-button:disabled {
+  display: flex !important;
+  opacity: 0.65 !important;
+}
+
+/* FORGOT PASSWORD */
 
 .user-login-box .forgot-password-button {
   display: block !important;
 
   width: auto !important;
-  min-width: 0 !important;
   height: auto !important;
 
-  margin: 4px auto 0 !important;
-  padding: 5px 8px !important;
+  margin: 8px auto 18px !important;
+  padding: 4px 8px !important;
 
   background: transparent !important;
   color: #8b5e3c !important;
@@ -1740,8 +1813,6 @@ footer p {
   font-family: inherit !important;
   font-size: 14px !important;
   font-weight: 600 !important;
-
-  text-align: center !important;
 
   cursor: pointer !important;
 
@@ -1755,25 +1826,13 @@ footer p {
   text-decoration: underline !important;
 }
 
-.user-login-box .forgot-password-button:disabled {
-  opacity: 0.6 !important;
-  cursor: not-allowed !important;
-}
-
-
-/* =====================================================
-   LOGIN SUCCESS MESSAGE
-   ===================================================== */
+/* SUCCESS */
 
 .login-success {
   margin-bottom: 16px;
   padding: 10px 12px;
-
   border-radius: 8px;
-
   background: #e8f7ed;
   color: #26733d;
-
   font-size: 14px;
-  line-height: 1.5;
 }

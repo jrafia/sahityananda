@@ -19,34 +19,37 @@ function UserLogin() {
     setMessage("");
 
     const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
+      email: email.trim(),
+      password: password,
     });
 
     if (error) {
       setError(error.message);
-    } else {
-      window.location.href = "/sahityananda/";
+      setLoading(false);
+      return;
     }
 
-    setLoading(false);
+    window.location.href = "/sahityananda/";
   };
 
   const handleForgotPassword = async () => {
-    if (!email) {
+    setError("");
+    setMessage("");
+
+    if (!email.trim()) {
       setError("প্রথমে আপনার Email লিখুন।");
       return;
     }
 
     setResetLoading(true);
-    setError("");
-    setMessage("");
 
-    const { error } =
-      await supabase.auth.resetPasswordForEmail(email, {
+    const { error } = await supabase.auth.resetPasswordForEmail(
+      email.trim(),
+      {
         redirectTo:
           "https://jrafia.github.io/sahityananda/reset-password",
-      });
+      }
+    );
 
     if (error) {
       setError(error.message);
@@ -76,23 +79,31 @@ function UserLogin() {
 
         <form onSubmit={handleLogin}>
 
-          <label>Email</label>
+          <label htmlFor="login-email">
+            Email
+          </label>
 
           <input
+            id="login-email"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="আপনার Email লিখুন"
+            autoComplete="email"
             required
           />
 
-          <label>Password</label>
+          <label htmlFor="login-password">
+            Password
+          </label>
 
           <input
+            id="login-password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="আপনার Password লিখুন"
+            autoComplete="current-password"
             required
           />
 
@@ -108,8 +119,10 @@ function UserLogin() {
             </div>
           )}
 
+          {/* LOGIN BUTTON */}
           <button
             type="submit"
+            className="login-submit-button"
             disabled={loading}
           >
             {loading ? "Login হচ্ছে..." : "Login"}
@@ -117,11 +130,12 @@ function UserLogin() {
 
         </form>
 
+        {/* FORGOT PASSWORD */}
         <button
           type="button"
+          className="forgot-password-button"
           onClick={handleForgotPassword}
           disabled={resetLoading}
-          className="forgot-password-button"
         >
           {resetLoading
             ? "Sending..."
