@@ -4,7 +4,6 @@ import { supabase } from "../lib/supabase";
 function ResetPassword() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
@@ -63,9 +62,7 @@ function ResetPassword() {
           <input
             type="password"
             value={password}
-            onChange={(e) =>
-              setPassword(e.target.value)
-            }
+            onChange={(e) => setPassword(e.target.value)}
             placeholder="New Password"
             required
           />
@@ -75,9 +72,7 @@ function ResetPassword() {
           <input
             type="password"
             value={confirmPassword}
-            onChange={(e) =>
-              setConfirmPassword(e.target.value)
-            }
+            onChange={(e) => setConfirmPassword(e.target.value)}
             placeholder="Confirm Password"
             required
           />
@@ -94,13 +89,8 @@ function ResetPassword() {
             </div>
           )}
 
-          <button
-            type="submit"
-            disabled={loading}
-          >
-            {loading
-              ? "Updating..."
-              : "Update Password"}
+          <button type="submit" disabled={loading}>
+            {loading ? "Updating..." : "Update Password"}
           </button>
 
         </form>
