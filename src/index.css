@@ -695,7 +695,6 @@ footer p {
   color: #fff;
 }
 
-
 /* MAIN */
 
 .admin-main {
@@ -703,7 +702,6 @@ footer p {
   width: calc(100% - 250px);
   min-height: 100vh;
 }
-
 
 /* TOPBAR */
 
@@ -749,14 +747,12 @@ footer p {
   height: 38px;
 }
 
-
 /* CONTENT */
 
 .admin-content {
   padding: 30px 34px 50px;
   max-width: 1500px;
 }
-
 
 /* WELCOME */
 
@@ -797,7 +793,6 @@ footer p {
   font-weight: 600;
   font-size: 13px;
 }
-
 
 /* STATS */
 
@@ -861,7 +856,6 @@ footer p {
   color: #999;
 }
 
-
 /* PANELS */
 
 .dashboard-grid {
@@ -902,7 +896,6 @@ footer p {
   font-size: 12px;
 }
 
-
 /* QUICK ACTIONS */
 
 .quick-actions {
@@ -941,7 +934,6 @@ footer p {
   font-size: 10px;
   margin-top: 4px;
 }
-
 
 /* EMPTY */
 
@@ -983,7 +975,6 @@ footer p {
   font-size: 11px;
 }
 
-
 /* OVERVIEW */
 
 .overview-list > div {
@@ -1003,7 +994,6 @@ footer p {
   color: #4a8b5d;
   font-size: 11px;
 }
-
 
 /* QUOTE */
 
@@ -1034,7 +1024,6 @@ footer p {
   color: #a56b3f;
 }
 
-
 /* MOBILE */
 
 @media (max-width: 900px) {
@@ -1057,7 +1046,6 @@ footer p {
   }
 
 }
-
 
 @media (max-width: 650px) {
 
@@ -1126,6 +1114,7 @@ footer p {
   }
 
 }
+
 /* =====================================================
    USERS PAGE
    ===================================================== */
@@ -1305,6 +1294,11 @@ footer p {
   }
 
 }
+
+/* =====================================================
+   USER LOGIN
+   ===================================================== */
+
 .user-login-page {
   min-height: 100vh;
   display: flex;
@@ -1371,7 +1365,12 @@ footer p {
   border-color: #8b5e3c;
 }
 
-.user-login-box button {
+/* LOGIN BUTTON */
+
+.user-login-box form button[type="submit"] {
+  display: block;
+  width: 100%;
+  margin-bottom: 12px;
   border: none;
   border-radius: 9px;
   padding: 13px;
@@ -1382,8 +1381,40 @@ footer p {
   cursor: pointer;
 }
 
-.user-login-box button:disabled {
+.user-login-box form button[type="submit"]:hover {
+  background: #6f472d;
+}
+
+.user-login-box form button[type="submit"]:disabled {
   opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* FORGOT PASSWORD BUTTON */
+
+.forgot-password-button {
+  display: block;
+  width: auto !important;
+  margin: 2px auto 0 !important;
+  padding: 2px 6px !important;
+  background: transparent !important;
+  color: #555 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  font-size: 12px !important;
+  font-weight: 400 !important;
+  line-height: 1.4;
+  cursor: pointer;
+  text-align: center;
+}
+
+.forgot-password-button:hover {
+  background: transparent !important;
+  color: #8b5e3c !important;
+  text-decoration: underline;
+}
+
+.user-login-box button:disabled {
   cursor: not-allowed;
 }
 
@@ -1393,6 +1424,15 @@ footer p {
   border-radius: 8px;
   background: #ffe8e8;
   color: #b42318;
+  font-size: 14px;
+}
+
+.login-success {
+  margin-bottom: 16px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: #e8f7ed;
+  color: #26733d;
   font-size: 14px;
 }
 
@@ -1418,6 +1458,9 @@ footer p {
   font-size: 13px;
   text-decoration: none;
 }
+
+/* Register */
+
 .register-success {
   margin-bottom: 16px;
   padding: 10px 12px;
@@ -1427,6 +1470,7 @@ footer p {
   font-size: 14px;
 }
 
+/* HEADER USER */
 
 .header-user-area {
   margin-left: auto;
@@ -1502,7 +1546,6 @@ footer p {
   opacity: 0.9;
 }
 
-
 @media (max-width: 700px) {
 
   .header-user-area {
@@ -1534,6 +1577,8 @@ footer p {
   }
 
 }
+
+/* NEW POST */
 
 .new-post-header-button {
   display: inline-block;
@@ -1662,6 +1707,7 @@ footer p {
 }
 
 @media (max-width: 700px) {
+
   .new-post-page {
     padding: 25px 12px;
   }
@@ -1674,25 +1720,5 @@ footer p {
     padding: 7px 10px;
     font-size: 12px;
   }
-}
-.user-login-box form button[type="submit"] {
-  display: block;
-  width: 10%;
-  margin-bottom: 12px;
-}
-.forgot-password-button {
-  display: block;
-  width: auto;
-  margin: 8px auto 0;
-  padding: 10px 6px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  font-size: 12px;
-  color: #555;
-  text-align: center;
-}
 
-.forgot-password-button:hover {
-  text-decoration: underline;
 }
