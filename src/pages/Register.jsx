@@ -60,7 +60,7 @@ function Register() {
       <div className="user-login-box">
 
         <div className="user-login-logo">
-          সাহিত্যনন্দ
+          সাহিত্যানন্দ
         </div>
 
         <h1>Create Account</h1>

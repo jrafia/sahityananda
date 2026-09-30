@@ -33,7 +33,7 @@ function UserLogin() {
       <div className="user-login-box">
 
         <div className="user-login-logo">
-          সাহিত্যনন্দ
+          সাহিত্যানন্দ
         </div>
 
         <h1>User Login</h1>

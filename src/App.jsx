@@ -11,6 +11,12 @@ import Register from "./pages/Register";
 import NewPost from "./pages/NewPost";
 
 /* =========================================================
+   BASE PATH
+   ========================================================= */
+
+const BASE_PATH = "/sahityananda";
+
+/* =========================================================
    CATEGORIES
    ========================================================= */
 
@@ -48,25 +54,36 @@ const knowledgeCategories = [
 
 const categoryDescriptions = {
   কবিতা: "কবিতা ও সমকালীন অনুভূতির প্রকাশ।",
+
   গল্প: "ছোট গল্প ও কথাসাহিত্যের নানা আয়োজন।",
+
   "ধারাবাহিক উপন্যাস":
     "ধারাবাহিকভাবে প্রকাশিত উপন্যাসের বিভিন্ন পর্ব।",
+
   "মুক্ত গদ্য":
     "ভাবনা, অনুভূতি ও স্বাধীন গদ্যের লেখা।",
+
   "বই পরিচিতি":
     "নতুন ও গুরুত্বপূর্ণ বই সম্পর্কে আলোচনা।",
+
   "কবি/লেখক পরিচিতি":
     "কবি ও লেখকদের জীবন ও সাহিত্যকর্ম।",
+
   "বিজ্ঞানীদের জীবনী":
     "বিশ্বের বিখ্যাত বিজ্ঞানীদের জীবন ও অবদান।",
+
   শব্দার্থ:
     "বাংলা শব্দের অর্থ, ব্যবহার ও ব্যাখ্যা।",
+
   বাগধারা:
     "বাংলা বাগধারা এবং তাদের অর্থ ও ব্যবহার।",
+
   ব্যাকরণ:
     "সহজভাবে বাংলা ব্যাকরণ শেখার আয়োজন।",
+
   "ব্যাকরণের রস":
     "বাংলা ভাষা ও ব্যাকরণের মজার বিষয়গুলো।",
+
   সাক্ষাৎকার:
     "লেখক ও সাহিত্যিকদের সঙ্গে বিশেষ আলাপ।",
 };
@@ -89,12 +106,24 @@ function App() {
      ========================================================= */
 
   useEffect(() => {
+    let mounted = true;
+
     const getCurrentUser = async () => {
       const {
         data: { user },
+        error,
       } = await supabase.auth.getUser();
 
-      setUser(user);
+      if (error) {
+        console.error(
+          "Get current user error:",
+          error
+        );
+      }
+
+      if (mounted) {
+        setUser(user || null);
+      }
     };
 
     getCurrentUser();
@@ -103,11 +132,16 @@ function App() {
       data: { subscription },
     } = supabase.auth.onAuthStateChange(
       (_event, session) => {
-        setUser(session?.user ?? null);
+        if (mounted) {
+          setUser(
+            session?.user || null
+          );
+        }
       }
     );
 
     return () => {
+      mounted = false;
       subscription.unsubscribe();
     };
   }, []);
@@ -120,7 +154,10 @@ function App() {
     const loadPosts = async () => {
       setPostsLoading(true);
 
-      const { data, error } = await supabase
+      const {
+        data,
+        error,
+      } = await supabase
         .from("posts")
         .select("*")
         .eq("status", "published")
@@ -155,59 +192,89 @@ function App() {
      ========================================================= */
 
   const handleLogout = async () => {
-    await supabase.auth.signOut();
+    const { error } =
+      await supabase.auth.signOut();
+
+    if (error) {
+      console.error(
+        "Logout error:",
+        error
+      );
+    }
 
     setUser(null);
 
     window.location.href =
-      "/sahityananda/";
+      `${BASE_PATH}/`;
   };
+
+  /* =========================================================
+     GITHUB PAGES ROUTING
+     ========================================================= */
+
+  const currentPath =
+    window.location.pathname
+      .replace(/\/+$/, "");
+
+  let routePath = currentPath;
+
+  if (
+    currentPath === BASE_PATH
+  ) {
+    routePath = "/";
+  } else if (
+    currentPath.startsWith(
+      `${BASE_PATH}/`
+    )
+  ) {
+    routePath =
+      currentPath.slice(
+        BASE_PATH.length
+      );
+  }
 
   /* =========================================================
      ROUTES
      ========================================================= */
 
-  const currentPath =
-    window.location.pathname;
-
   if (
-    currentPath ===
-    "/sahityananda/admin/login"
+    routePath ===
+    "/admin/login"
   ) {
     return <AdminLogin />;
   }
 
   if (
-    currentPath ===
-    "/sahityananda/admin/users"
+    routePath ===
+    "/admin/users"
   ) {
     return <AdminUsers />;
   }
 
   if (
-    currentPath ===
-    "/sahityananda/login"
+    routePath ===
+    "/login"
   ) {
     return <UserLogin />;
   }
 
   if (
-    currentPath ===
-    "/sahityananda/register"
+    routePath ===
+    "/register"
   ) {
     return <Register />;
   }
 
   if (
-    currentPath ===
-    "/sahityananda/new-post"
+    routePath ===
+    "/new-post"
   ) {
     return <NewPost />;
   }
 
   if (
-    currentPath ===
-    "/sahityananda/admin"
+    routePath ===
+    "/admin"
   ) {
     return <AdminDashboard />;
   }
@@ -230,7 +297,8 @@ function App() {
   ) => {
     return posts.filter(
       (post) =>
-        post.category === category
+        post.category ===
+        category
     );
   };
 
@@ -238,7 +306,9 @@ function App() {
      FORMAT DATE
      ========================================================= */
 
-  const formatDate = (date) => {
+  const formatDate = (
+    date
+  ) => {
     if (!date) return "";
 
     return new Date(
@@ -278,7 +348,8 @@ function App() {
               style={{
                 width: "100%",
                 height: "100%",
-                objectFit: "cover",
+                objectFit:
+                  "cover",
               }}
             />
           ) : (
@@ -314,8 +385,10 @@ function App() {
           {post.created_at && (
             <small
               style={{
-                display: "block",
-                marginTop: "5px",
+                display:
+                  "block",
+                marginTop:
+                  "5px",
               }}
             >
               প্রকাশিত:{" "}
@@ -354,7 +427,8 @@ function App() {
 
           <a
             href={
-              "#" + category
+              "#" +
+              category
             }
           >
             সব লেখা →
@@ -423,6 +497,7 @@ function App() {
       <header className="header">
 
         <div className="topbar">
+
           <span>
             সাহিত্য • জ্ঞান • সংস্কৃতি
           </span>
@@ -430,6 +505,7 @@ function App() {
           <span>
             আজকের তারিখ
           </span>
+
         </div>
 
         <div className="brand">
@@ -446,7 +522,22 @@ function App() {
             ☰
           </button>
 
-          <div className="brand-title" style={{ position: "absolute", left: "50%", transform: "translateX(-50%)", textAlign: "center", whiteSpace: "nowrap", }}>
+          {/* CENTER BRAND */}
+
+          <div
+            className="brand-title"
+            style={{
+              position:
+                "absolute",
+              left: "50%",
+              transform:
+                "translateX(-50%)",
+              textAlign:
+                "center",
+              whiteSpace:
+                "nowrap",
+            }}
+          >
 
             <h1>
               সাহিত্যানন্দ
@@ -458,6 +549,8 @@ function App() {
 
           </div>
 
+          {/* USER AREA */}
+
           <div className="header-user-area">
 
             {user ? (
@@ -467,7 +560,7 @@ function App() {
                 {/* NEW POST */}
 
                 <a
-                  href="/sahityananda/new-post"
+                  href={`${BASE_PATH}/new-post`}
                   className="new-post-header-button"
                 >
                   ✍️ নতুন লেখা
@@ -476,9 +569,11 @@ function App() {
                 {/* AVATAR */}
 
                 <div className="user-avatar">
+
                   {userName
                     .charAt(0)
                     .toUpperCase()}
+
                 </div>
 
                 {/* USER INFO */}
@@ -511,7 +606,7 @@ function App() {
             ) : (
 
               <a
-                href="/sahityananda/login"
+                href={`${BASE_PATH}/login`}
                 className="header-login-button"
               >
                 Login
@@ -720,40 +815,24 @@ function App() {
         </section>
 
         {/* ===================================================
-            POETRY
+            CATEGORY SECTIONS
             =================================================== */}
 
         <CategorySection
           category="কবিতা"
         />
 
-        {/* ===================================================
-            STORY
-            =================================================== */}
-
         <CategorySection
           category="গল্প"
         />
-
-        {/* ===================================================
-            SERIAL NOVEL
-            =================================================== */}
 
         <CategorySection
           category="ধারাবাহিক উপন্যাস"
         />
 
-        {/* ===================================================
-            FREE PROSE
-            =================================================== */}
-
         <CategorySection
           category="মুক্ত গদ্য"
         />
-
-        {/* ===================================================
-            AUTHOR
-            =================================================== */}
 
         <CategorySection
           category="কবি/লেখক পরিচিতি"
@@ -952,3 +1031,4 @@ function App() {
 }
 
 export default App;
+
