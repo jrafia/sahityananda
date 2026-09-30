@@ -9,6 +9,7 @@ import AdminUsers from "./pages/AdminUsers";
 import UserLogin from "./pages/UserLogin";
 import Register from "./pages/Register";
 import NewPost from "./pages/NewPost";
+import ResetPassword from "./pages/ResetPassword";
 
 /* =========================================================
    BASE PATH
@@ -271,7 +272,9 @@ function App() {
   ) {
     return <NewPost />;
   }
-
+if (routePath === "/reset-password") {
+  return <ResetPassword />;
+}
   if (
     routePath ===
     "/admin"

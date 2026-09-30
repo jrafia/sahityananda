@@ -4,14 +4,19 @@ import { supabase } from "../lib/supabase";
 function UserLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const [loading, setLoading] = useState(false);
+  const [resetLoading, setResetLoading] = useState(false);
+
   const [error, setError] = useState("");
+  const [message, setMessage] = useState("");
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
     setLoading(true);
     setError("");
+    setMessage("");
 
     const { error } = await supabase.auth.signInWithPassword({
       email,
@@ -25,6 +30,33 @@ function UserLogin() {
     }
 
     setLoading(false);
+  };
+
+  const handleForgotPassword = async () => {
+    if (!email) {
+      setError("প্রথমে আপনার Email লিখুন।");
+      return;
+    }
+
+    setResetLoading(true);
+    setError("");
+    setMessage("");
+
+    const { error } =
+      await supabase.auth.resetPasswordForEmail(email, {
+        redirectTo:
+          "https://jrafia.github.io/sahityananda/reset-password",
+      });
+
+    if (error) {
+      setError(error.message);
+    } else {
+      setMessage(
+        "Password reset link আপনার email-এ পাঠানো হয়েছে। Inbox এবং Spam folder চেক করুন।"
+      );
+    }
+
+    setResetLoading(false);
   };
 
   return (
@@ -44,9 +76,7 @@ function UserLogin() {
 
         <form onSubmit={handleLogin}>
 
-          <label>
-            Email
-          </label>
+          <label>Email</label>
 
           <input
             type="email"
@@ -56,9 +86,7 @@ function UserLogin() {
             required
           />
 
-          <label>
-            Password
-          </label>
+          <label>Password</label>
 
           <input
             type="password"
@@ -74,6 +102,12 @@ function UserLogin() {
             </div>
           )}
 
+          {message && (
+            <div className="login-success">
+              {message}
+            </div>
+          )}
+
           <button
             type="submit"
             disabled={loading}
@@ -83,8 +117,20 @@ function UserLogin() {
 
         </form>
 
+        <button
+          type="button"
+          onClick={handleForgotPassword}
+          disabled={resetLoading}
+          className="forgot-password-button"
+        >
+          {resetLoading
+            ? "Sending..."
+            : "Forgot Password?"}
+        </button>
+
         <div className="user-login-footer">
           <span>অ্যাকাউন্ট নেই?</span>
+
           <a href="/sahityananda/register">
             Create Account
           </a>
