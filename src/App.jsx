@@ -446,10 +446,10 @@ function App() {
             ☰
           </button>
 
-          <div className="brand-title">
+          <div className="brand-title" style={{ position: "absolute", left: "50%", transform: "translateX(-50%)", textAlign: "center", whiteSpace: "nowrap", }}>
 
             <h1>
-              সাহিত্যনন্দ
+              সাহিত্যানন্দ
             </h1>
 
             <p>
