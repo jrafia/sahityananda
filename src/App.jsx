@@ -505,9 +505,14 @@ if (routePath === "/reset-password") {
             সাহিত্য • জ্ঞান • সংস্কৃতি
           </span>
 
-          <span>
-            আজকের তারিখ
-          </span>
+         <span>
+    আজকের তারিখ:{" "}
+    {new Date().toLocaleDateString("bn-BD", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    })}
+  </span>
 
         </div>
 
