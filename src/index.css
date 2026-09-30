@@ -1674,25 +1674,106 @@ footer p {
     padding: 7px 10px;
     font-size: 12px;
   }
-}
+}/* =====================================================
+   USER LOGIN BUTTON
+   ===================================================== */
+
 .user-login-box form button[type="submit"] {
-  display: block;
-  width: 10%;
-  margin-bottom: 12px;
+  display: block !important;
+  width: 100% !important;
+  height: 46px !important;
+
+  margin-top: 5px !important;
+  margin-bottom: 12px !important;
+
+  padding: 12px 15px !important;
+
+  background: #8b5e3c !important;
+  color: #ffffff !important;
+
+  border: none !important;
+  border-radius: 9px !important;
+
+  font-family: inherit !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+
+  text-align: center !important;
+
+  cursor: pointer !important;
+
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
-.forgot-password-button {
-  display: block;
-  width: 100%;
-  margin-top: 16px;
-  padding: 10px 15px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
+.user-login-box form button[type="submit"]:hover {
+  background: #6f472d !important;
+}
+
+.user-login-box form button[type="submit"]:disabled {
+  display: block !important;
+  opacity: 0.6 !important;
+  cursor: not-allowed !important;
+}
+
+
+/* =====================================================
+   FORGOT PASSWORD
+   ===================================================== */
+
+.user-login-box .forgot-password-button {
+  display: block !important;
+
+  width: auto !important;
+  min-width: 0 !important;
+  height: auto !important;
+
+  margin: 4px auto 0 !important;
+  padding: 5px 8px !important;
+
+  background: transparent !important;
+  color: #8b5e3c !important;
+
+  border: none !important;
+  border-radius: 0 !important;
+
+  font-family: inherit !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+
+  text-align: center !important;
+
+  cursor: pointer !important;
+
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.user-login-box .forgot-password-button:hover {
+  background: transparent !important;
+  color: #6f472d !important;
+  text-decoration: underline !important;
+}
+
+.user-login-box .forgot-password-button:disabled {
+  opacity: 0.6 !important;
+  cursor: not-allowed !important;
+}
+
+
+/* =====================================================
+   LOGIN SUCCESS MESSAGE
+   ===================================================== */
+
+.login-success {
+  margin-bottom: 16px;
+  padding: 10px 12px;
+
+  border-radius: 8px;
+
+  background: #e8f7ed;
+  color: #26733d;
+
   font-size: 14px;
-  text-align: center;
-}
-
-.forgot-password-button:hover {
-  text-decoration: underline;
+  line-height: 1.5;
 }
